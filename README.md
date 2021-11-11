@@ -1,4 +1,4 @@
 ## Task API
-- API Created
-- Migration added
-- Database updated
+- [x] API Created
+- [x] Migration added
+- [x] Database updated
