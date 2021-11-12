@@ -1,6 +1,6 @@
 namespace tasks.Model
 {
-    public enum ETaskStatus
+    public enum ETaskStatusModel
     {
         None,
         InProgress,

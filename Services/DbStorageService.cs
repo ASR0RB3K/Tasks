@@ -128,5 +128,23 @@ namespace tasks.Services
                 return (false, e);
             }
         }
+
+        public async Task <(bool isSuccess, Exception exception)> RemoveTaskAsync(Guid id)
+        {
+            try
+            {
+
+                    _context.Tasks.Remove(_context.Tasks.FirstOrDefault(u => u.Id == id));
+                    await _context.SaveChangesAsync();
+
+                    return (true, null);
+            }
+
+            catch(Exception e)
+            {   
+                return (false, e);
+            }
+            
+            }
+        }
     }
-}

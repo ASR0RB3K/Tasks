@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using tasks.Data;
 using tasks.Mapper;
 using tasks.Model;
 using tasks.Services;
@@ -16,17 +18,19 @@ namespace tasks.Controllers
     {
         private readonly ILogger<TasksController> _logger;
         private readonly IStorageService _storage;
+        private readonly TaskDbContext _context;
 
-        public TasksController(ILogger<TasksController> logger, IStorageService storage)
+        public TasksController(ILogger<TasksController> logger, IStorageService storage, TaskDbContext context)
         {
             _logger = logger;
             _storage = storage;
+            _context = context;
         }
 
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> CreateTask([FromBody]NewTask newTask)
+        public async Task<IActionResult> CreateTask([FromBody][FromRoute]NewTask newTask)
         {
             var taskEntity = newTask.ToTaskEntity();
             var insertResult = await _storage.InsertTaskAsync(taskEntity);
@@ -40,7 +44,7 @@ namespace tasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> QueryTasks([FromQuery]TaskQuery query)
+        public async Task<IActionResult> QueryTasks([FromQuery][FromRoute]TaskQuery query)
         {
             var tasks = await _storage.GetTasksAsync(title: query.Title, id: query.Id);
 
@@ -64,6 +68,20 @@ namespace tasks.Controllers
             }
 
             return BadRequest(updateResult.exception.Message);
+        }
+
+        [HttpDelete]
+        [Route("{Id}")]
+        public async Task<IActionResult> RemoveTaskAsync([FromRoute]Guid Id)
+        {
+            var deletedResult = await _storage.RemoveTaskAsync(Id);
+
+            if(deletedResult.isSuccess)
+            {
+                return Ok();
+            } 
+
+            return NotFound(deletedResult.exception.Message);
         }
     }
 }

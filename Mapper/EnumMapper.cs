@@ -2,37 +2,37 @@ namespace tasks.Mapper
 {
     public static class EnumMappers
     {
-        public static Entity.ETaskPriority ToEntityETaskPriority(this Model.ETaskPriority? priority)
+        public static Entity.ETaskPriority ToEntityETaskPriority(this Model.ETaskPriorityModel? priority)
         {
             return priority switch
             {
-                Model.ETaskPriority.High => Entity.ETaskPriority.High,
-                Model.ETaskPriority.Mid => Entity.ETaskPriority.Mid,
-                Model.ETaskPriority.Low => Entity.ETaskPriority.Low,
+                Model.ETaskPriorityModel.High => Entity.ETaskPriority.High,
+                Model.ETaskPriorityModel.Mid => Entity.ETaskPriority.Mid,
+                Model.ETaskPriorityModel.Low => Entity.ETaskPriority.Low,
                 _ => Entity.ETaskPriority.None,
             };
         }
 
-        public static Entity.ETaskStatus ToEntityETaskStatus(this Model.ETaskStatus? status)
+        public static Entity.ETaskStatus ToEntityETaskStatus(this Model.ETaskStatusModel? status)
         {
             return status switch
             {
-                Model.ETaskStatus.Completed => Entity.ETaskStatus.Completed,
-                Model.ETaskStatus.InProgress => Entity.ETaskStatus.InProgress,
-                Model.ETaskStatus.Postponed => Entity.ETaskStatus.Postponed,
+                Model.ETaskStatusModel.Completed => Entity.ETaskStatus.Completed,
+                Model.ETaskStatusModel.InProgress => Entity.ETaskStatus.InProgress,
+                Model.ETaskStatusModel.Postponed => Entity.ETaskStatus.Postponed,
                 _ => Entity.ETaskStatus.None,
             };
         }
 
-        public static Entity.ETaskRepeat ToEntityETaskRepeat(this Model.ETaskRepeat? repeat)
+        public static Entity.ETaskRepeat ToEntityETaskRepeat(this Model.ETaskRepeatModel? repeat)
         {
             return repeat switch
             {
-                Model.ETaskRepeat.Daily => Entity.ETaskRepeat.Daily,
-                Model.ETaskRepeat.Hourly => Entity.ETaskRepeat.Hourly,
-                Model.ETaskRepeat.Monthly => Entity.ETaskRepeat.Monthly,
-                Model.ETaskRepeat.Weekly => Entity.ETaskRepeat.Weekly,
-                Model.ETaskRepeat.Yearly => Entity.ETaskRepeat.Yearly,
+                Model.ETaskRepeatModel.Daily => Entity.ETaskRepeat.Daily,
+                Model.ETaskRepeatModel.Hourly => Entity.ETaskRepeat.Hourly,
+                Model.ETaskRepeatModel.Monthly => Entity.ETaskRepeat.Monthly,
+                Model.ETaskRepeatModel.Weekly => Entity.ETaskRepeat.Weekly,
+                Model.ETaskRepeatModel.Yearly => Entity.ETaskRepeat.Yearly,
                 _ => Entity.ETaskRepeat.Never
             };
         }

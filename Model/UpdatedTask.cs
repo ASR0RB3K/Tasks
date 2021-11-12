@@ -22,11 +22,11 @@ namespace tasks.Model
 
         public DateTimeOffset AtATime { get; set; }
 
-        public ETaskStatus? Status { get; set; }
+        public ETaskStatusModel? Status { get; set; }
 
-        public ETaskRepeat? Repeat { get; set; }
+        public ETaskRepeatModel? Repeat { get; set; }
 
-        public ETaskPriority? Priority { get; set; }
+        public ETaskPriorityModel? Priority { get; set; }
 
         public TaskLocation Location { get; set; }
 

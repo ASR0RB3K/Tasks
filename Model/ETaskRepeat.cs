@@ -1,6 +1,6 @@
 namespace tasks.Model
 {
-    public enum ETaskRepeat
+    public enum ETaskRepeatModel
     {
         Never,
         Hourly,

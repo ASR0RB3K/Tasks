@@ -22,5 +22,6 @@ namespace tasks.Services
             string url = default(string));
         
         Task<(bool isSuccess, Exception exception)> UpdateTaskAsync(Entity.Task task);
+        Task<(bool isSuccess, Exception exception)> RemoveTaskAsync(Guid id);
     }
 }
