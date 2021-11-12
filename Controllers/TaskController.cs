@@ -30,7 +30,7 @@ namespace tasks.Controllers
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> CreateTask([FromBody][FromRoute]NewTask newTask)
+        public async Task<IActionResult> CreateTask([FromBody]NewTask newTask)
         {
             var taskEntity = newTask.ToTaskEntity();
             var insertResult = await _storage.InsertTaskAsync(taskEntity);
@@ -44,13 +44,13 @@ namespace tasks.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> QueryTasks([FromQuery][FromRoute]TaskQuery query)
+        [Route("{id}")]
+        public async Task<IActionResult> QueryTasks([FromRoute]TaskQuery query)
         {
-            var tasks = await _storage.GetTasksAsync(title: query.Title, id: query.Id);
-
-            if(tasks.Any())
+            var task = await _storage.GetTasksAsync(id: query.Id);
+            if(task.Any())
             {
-                return Ok(tasks);
+                return Ok(query);
             }
 
             return NotFound("No tasks exist!");
