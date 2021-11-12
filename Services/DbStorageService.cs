@@ -133,11 +133,10 @@ namespace tasks.Services
         {
             try
             {
+                _context.Tasks.Remove(_context.Tasks.FirstOrDefault(u => u.Id == id));
+                await _context.SaveChangesAsync();
 
-                    _context.Tasks.Remove(_context.Tasks.FirstOrDefault(u => u.Id == id));
-                    await _context.SaveChangesAsync();
-
-                    return (true, null);
+                return (true, null);
             }
 
             catch(Exception e)
@@ -145,6 +144,6 @@ namespace tasks.Services
                 return (false, e);
             }
             
-            }
         }
     }
+}
