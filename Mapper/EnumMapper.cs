@@ -2,7 +2,6 @@ namespace tasks.Mapper
 {
     public static class EnumMappers
     {
-        // Model to Entity
         public static Entity.ETaskPriority ToEntityETaskPriority(this Model.ETaskPriority? priority)
         {
             return priority switch
@@ -35,43 +34,6 @@ namespace tasks.Mapper
                 Model.ETaskRepeat.Weekly => Entity.ETaskRepeat.Weekly,
                 Model.ETaskRepeat.Yearly => Entity.ETaskRepeat.Yearly,
                 _ => Entity.ETaskRepeat.Never
-            };
-        }
-
-
-        // Entity to Model 
-        public static Model.ETaskRepeat ToModelETaskRepeat(this Entity.ETaskRepeat repeat)
-        {
-            return repeat switch
-            {
-                Entity.ETaskRepeat.Hourly => Model.ETaskRepeat.Hourly,
-                Entity.ETaskRepeat.Daily => Model.ETaskRepeat.Daily,
-                Entity.ETaskRepeat.Weekly => Model.ETaskRepeat.Weekly,
-                Entity.ETaskRepeat.Monthly => Model.ETaskRepeat.Monthly,
-                Entity.ETaskRepeat.Yearly => Model.ETaskRepeat.Yearly,
-                _ => Model.ETaskRepeat.Never,
-            };
-        }
-
-        public static Model.ETaskStatus ToModelETaskStatus(this Entity.ETaskStatus status)
-        {
-            return status switch
-            {
-                Entity.ETaskStatus.InProgress => Model.ETaskStatus.InProgress,
-                Entity.ETaskStatus.Postponed => Model.ETaskStatus.Postponed,
-                Entity.ETaskStatus.Completed => Model.ETaskStatus.Completed,
-                _ => Model.ETaskStatus.None,
-            };
-        }
-
-        public static Model.ETaskPriority ToModelETaskPriority(this Entity.ETaskPriority priority)
-        {
-            return priority switch
-            {
-                Entity.ETaskPriority.Low => Model.ETaskPriority.Low,
-                Entity.ETaskPriority.Mid => Model.ETaskPriority.Mid,
-                Entity.ETaskPriority.High => Model.ETaskPriority.High,
-                _ => Model.ETaskPriority.None,
             };
         }
     }
